@@ -1,0 +1,11 @@
+mne>=1.5.0
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+autoreject>=0.4.0
+mne-icalabel>=0.5.0
+onnxruntime>=1.15.0
+pyprep>=0.4.0
+tqdm>=4.65.0
+ipykernel

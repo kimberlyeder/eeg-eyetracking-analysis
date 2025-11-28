@@ -1,0 +1,43 @@
+# Data files (too large, contains participant data)
+Data/
+preprocessed/
+figures/
+results/
+old/
+asc_files/
+
+# Python virtual environment
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# MNE/EEG data files
+*.pkl
+*.fif
+*.EDF
+*.edf
+*.csv
+*.psydat
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+
+# Keep session mapping (small metadata file)
+!session_mapping.csv

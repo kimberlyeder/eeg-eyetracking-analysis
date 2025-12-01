@@ -19,17 +19,28 @@ The analysis pipeline consists of sequential Jupyter notebooks:
 - **`04_EEG_Preprocess-ICA.ipynb`**: Applies ICA with ICLabel for artifact removal
 
 ### 3. ERP Analysis
-- **`05_ERP_Analysis.ipynb`**: Main analysis notebook including:
+- **`05_ERP_Analysis.ipynb`**: Single-session ERP analysis including:
   - Event extraction from experiment data
   - Epoch creation and artifact rejection (AutoReject)
   - ERP averaging and visualization
-  - Component identification (N400, P600, etc.)
+  - Component identification (N1, P2, N2, P300, N400, LPP, Late Negativity)
   - Statistical quality assessment
+- **`06_Grand_Average_ERP.ipynb`**: Multi-session grand average analysis:
+  - Combines epochs from all sessions (N=3 participants)
+  - Computes grand average ERPs by condition
+  - Generates publication-quality waveforms and topomaps
+  - Extracts mean amplitudes for component time windows
+  - Exports amplitude data and condition comparisons
 
 ### 4. Eye Tracking (Supplementary)
-- **`06_EyeEvents.ipynb`**: Eye event analysis
-- **`07_Eye_plotting.ipynb`**: Eye tracking visualization
-- **`08_Eye_Stats-2.ipynb`**: Eye tracking statistics
+- **`07_EyeEvents.ipynb`**: Eye-tracking event parsing and feature extraction
+- **`Step_14_Eye_plotting.ipynb`**: Eye-tracking visualization
+- **`Step_15_Eye_Stats-2.ipynb`**: Eye-tracking exploratory statistics
+- **`09_Eye_Stats_Python.ipynb`**: Linear mixed-effects models for eye-tracking data:
+  - Tests effects of alignment condition on pupil size, fixation duration, saccade metrics
+  - Uses `statsmodels.MixedLM` for LME modeling
+  - Generates boxplots and statistical summaries
+  - Exports model comparisons (AIC/BIC) and descriptive statistics
 
 ## Preprocessing Details
 
@@ -59,11 +70,19 @@ Data/                                    # Raw experiment and EEG data (not in r
 preprocessed/                            # Intermediate processing files (not in repo)
 ├── session_XX-EEG-raw.pkl              # Raw EEG arrays
 ├── session_XX-EEG-preprocessed.pkl     # After ICA artifact removal
-├── session_XX-epochs-epo.fif           # Epoched data
-└── session_XX-evoked-*.fif             # Condition-averaged ERPs
+├── X-epochs-epo.fif                    # Epoched data (per session)
+├── X-evoked-*.fif                      # Condition-averaged ERPs (per session)
+└── eye_tracking_features.csv           # Eye-tracking metrics by trial
 
 figures/                                 # Generated plots (not in repo)
+├── erp_*.png                           # ERP waveforms and topomaps
+├── grand_average_*.png                 # Grand average visualizations
+└── eye_stats_*.png                     # Eye-tracking statistical plots
+
 results/                                 # Analysis outputs (not in repo)
+├── *_amplitudes.csv                    # ERP amplitude extractions
+├── grand_average_*.csv                 # Grand average summaries
+└── eye_stats_*.csv                     # Eye-tracking statistical results
 
 session_mapping.csv                      # Session metadata (included in repo)
 ```
@@ -94,8 +113,10 @@ Run notebooks in sequence:
 
 1. Place raw data in `Data/` folder
 2. Run `01_Map_Sessions.ipynb` to create session mapping
-3. Run preprocessing notebooks (02-04) in order
-4. Run `05_ERP_Analysis.ipynb` for ERP analysis
+3. Run preprocessing notebooks (02-04) in order for each session
+4. Run `05_ERP_Analysis.ipynb` for each session to generate epochs
+5. Run `06_Grand_Average_ERP.ipynb` to combine sessions and compute grand averages
+6. (Optional) Run eye-tracking notebooks (07, Step_14, Step_15, 09) for supplementary analysis
 
 Each notebook includes detailed documentation and quality checks.
 
@@ -113,17 +134,22 @@ Each notebook includes detailed documentation and quality checks.
 - MNE-Python 1.5+ (EEG/MEG analysis)
 - AutoReject (artifact detection)
 - MNE-ICALabel (ICA component classification)
-- Standard scientific Python stack (NumPy, Pandas, Matplotlib, Seaborn)
+- statsmodels (linear mixed-effects models)
+- Standard scientific Python stack (NumPy, Pandas, Matplotlib, Seaborn, SciPy)
 
 See `requirements.txt` for complete list.
 
 ## Experimental Design
 
+- **Participants**: N=3 (Sessions 0, 1, 4)
 - **Conditions**: 3 alignment levels (high, medium, low)
 - **Stimuli**: AI-generated text responses to social scenarios
 - **Task**: Read AI responses after providing own response
 - **EEG**: 64-channel system, 500 Hz sampling rate
+- **Eye-tracking**: EyeLink system, synchronized with EEG
 - **Expected trials**: ~50 per session (minimum 15-20 per condition for valid ERPs)
+- **ERP Components**: N1, P2, N2, P300, N400, LPP, Late Negativity (500-700ms)
+- **Eye Metrics**: Pupil size, fixation duration, saccade amplitude/count, ROI coverage
 
 ## Citation
 

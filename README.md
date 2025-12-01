@@ -141,4 +141,4 @@ MIT License
 
 Kimberly Eder
 - GitHub: [@kimberlyeder](https://github.com/kimberlyeder)
-- Repository: [eeg-eyetracking-data-analysis](https://github.com/kimberlyeder/eeg-eyetracking-data-analysis)
+- Repository: [eeg-eyetracking-data-analysis](https://github.com/kimberlyeder/eeg-eyetracking-analysis)

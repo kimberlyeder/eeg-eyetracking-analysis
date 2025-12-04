@@ -34,13 +34,15 @@ The analysis pipeline consists of sequential Jupyter notebooks:
 
 ### 4. Eye Tracking (Supplementary)
 - **`07_EyeEvents.ipynb`**: Eye-tracking event parsing and feature extraction
-- **`Step_14_Eye_plotting.ipynb`**: Eye-tracking visualization
-- **`Step_15_Eye_Stats-2.ipynb`**: Eye-tracking exploratory statistics
+- **`08_Eye_plotting.ipynb`**: Eye-tracking visualization
 - **`09_Eye_Stats_Python.ipynb`**: Linear mixed-effects models for eye-tracking data:
   - Tests effects of alignment condition on pupil size, fixation duration, saccade metrics
   - Uses `statsmodels.MixedLM` for LME modeling
   - Generates boxplots and statistical summaries
   - Exports model comparisons (AIC/BIC) and descriptive statistics
+
+### 5. VAS Rating (Supplementary)
+- **`10_VAS_Rating_Results.ipynb`**: VAS Rating Analysis
 
 ## Preprocessing Details
 
@@ -116,7 +118,7 @@ Run notebooks in sequence:
 3. Run preprocessing notebooks (02-04) in order for each session
 4. Run `05_ERP_Analysis.ipynb` for each session to generate epochs
 5. Run `06_Grand_Average_ERP.ipynb` to combine sessions and compute grand averages
-6. (Optional) Run eye-tracking notebooks (07, Step_14, Step_15, 09) for supplementary analysis
+6. (Optional) Run eye-tracking notebooks (07, 08, 09) for supplementary analysis
 
 Each notebook includes detailed documentation and quality checks.
 
@@ -167,4 +169,4 @@ MIT License
 
 Kimberly Eder
 - GitHub: [@kimberlyeder](https://github.com/kimberlyeder)
-- Repository: [eeg-eyetracking-data-analysis](https://github.com/kimberlyeder/eeg-eyetracking-analysis)
+- Repository: [eeg-eyetracking-analysis](https://github.com/kimberlyeder/eeg-eyetracking-analysis)

@@ -128,7 +128,7 @@ Run notebooks in sequence:
    - First, execute **Section 4 (Batch Processing)** to automatically process all 21 sessions
    - Then execute **Section 8 (Grand-Average)** to combine sessions
    - Optional: Use Appendix sections for manual single-session inspection
-5. (Optional) Run eye-tracking notebooks (Step_12, Step_14, Step_15) for supplementary analysis
+5. (Optional) Run eye-tracking notebooks for supplementary analysis
 
 Each notebook includes detailed documentation and quality checks.
 
